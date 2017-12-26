@@ -10,6 +10,7 @@ namespace app\news\command;
 use think\console\Command;
 use think\console\Input;
 use think\console\Output;
+use think\Db;
 
 class Collect extends Command
 {
@@ -22,9 +23,18 @@ class Collect extends Command
 
     protected function execute(Input $input, Output $output)
     {
+        $newid = Db::name("btc_news")->max("newsflash_id");
+        $curdate = date("Y-m-d");
         $bishijie = $this->http_get_content("http://api.bishijie.com/Newsflash/getNewsList/?client=android&page=1");
-        print_r(json_decode($bishijie,true));
-        $output->writeln("TestCommand:");
+        $bsj_arr = json_decode($bishijie,true);
+        foreach ($bsj_arr[$curdate]['buttom'] as $bsj){
+            if($bsj['newsflash_id']>$newid) {
+                Db::name("btc_news")->insert(array("newsflash_id"=>$bsj['newsflash_id'],"content"=>$bsj['content']));
+                $output->writeln("insert a news" . $bsj['newsflash_id']);
+            }
+
+        }
+
     }
 
     protected function http_get_content($url, $cache = false){
