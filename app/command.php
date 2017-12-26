@@ -23,5 +23,5 @@ foreach ($apps as $app) {
     }
 
 }
-
+print_r($returnCommands);
 return $returnCommands;
