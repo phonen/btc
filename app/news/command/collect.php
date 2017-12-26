@@ -15,6 +15,7 @@ class Collect extends Command
 {
     protected function configure()
     {
+        throw new \LogicException(sprintf('The command defined in "%s" cannot have an empty name.', get_class($this)));
         $this->setName('test')->setDescription('Here is the remark ');
     }
 
