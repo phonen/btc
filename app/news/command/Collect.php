@@ -32,6 +32,7 @@ class Collect extends Command
                 Db::name("btc_news")->insert(array("newsflash_id"=>$bsj['newsflash_id'],"content"=>$bsj['content'],"top"=>$bsj['top']));
                 $output->writeln("insert a news" . $bsj['newsflash_id']);
             }
+            else break;
 
         }
 
