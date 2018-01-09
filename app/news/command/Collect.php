@@ -29,8 +29,12 @@ class Collect extends Command
         $bsj_arr = json_decode($bishijie,true);
         foreach ($bsj_arr[$curdate]['buttom'] as $bsj){
             if($bsj['newsflash_id']>$newid) {
-                Db::name("btc_news")->insert(array("newsflash_id"=>$bsj['newsflash_id'],"content"=>$bsj['content'],"rank"=>$bsj['rank']));
-                $output->writeln("insert a news" . $bsj['newsflash_id']);
+                if(preg_match("/\x{3010}(.*)\x{3011}/",$bsj['content'],$out)){
+                    $title = $out[1];
+                    Db::name("btc_news")->insert(array("newsflash_id"=>$bsj['newsflash_id'],"content"=>$bsj['content'],"title"=>$title,"rank"=>$bsj['rank']));
+                    $output->writeln("insert a news" . $bsj['newsflash_id']);
+                }
+
             }
             else break;
 
