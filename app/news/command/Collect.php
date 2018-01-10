@@ -23,6 +23,8 @@ class Collect extends Command
 
     protected function execute(Input $input, Output $output)
     {
+        $redis = new \Redis();
+        $redis->connect('127.0.0.1', 6379);
         $newid = Db::name("btc_news")->max("newsflash_id");
         $curdate = date("Y-m-d");
         $bishijie = $this->http_get_content("http://api.bishijie.com/Newsflash/getNewsList/?client=android&page=1");
@@ -31,6 +33,8 @@ class Collect extends Command
             if($bsj['newsflash_id']>$newid) {
                 if(preg_match("/\x{3010}(.*)\x{3011}/u",$bsj['content'],$out)){
                     $title = $out[1];
+                    $redis->lPush("content1",$bsj['content']);
+                    $redis->lPush("content2",$bsj['content']);
                     Db::name("btc_news")->insert(array("newsflash_id"=>$bsj['newsflash_id'],"content"=>$bsj['content'],"title"=>$title,"rank"=>$bsj['rank']));
                     $output->writeln("insert a news" . $bsj['newsflash_id']);
                 }
