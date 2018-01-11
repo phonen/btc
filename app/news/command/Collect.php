@@ -35,7 +35,7 @@ class Collect extends Command
                     $title = $out[1];
                     $redis->lPush("content1",$bsj['content']);
                     $redis->lPush("content2",$bsj['content']);
-                    Db::name("btc_news")->insert(array("newsflash_id"=>$bsj['newsflash_id'],"content"=>$bsj['content'],"title"=>$title,"rank"=>$bsj['rank']));
+                    Db::name("btc_news")->insert(array("newsflash_id"=>$bsj['newsflash_id'],"content"=>$bsj['content'],"title"=>$title,"rank"=>$bsj['rank'],"issue_time"=>$bsj['issue_time']));
                     $output->writeln("insert a news" . $bsj['newsflash_id']);
                 }
 
