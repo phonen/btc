@@ -17,7 +17,7 @@ class IndexController extends HomeBaseController
 {
     public function index()
     {
-        $coinmarket = Db::connect('db_coinmarket')->name("coinmarket")->where("last_updated>=UNIX_TIMESTAMP(now() - interval 10 minute)")->order("volume desc")->select();
+        $coinmarket = Db::connect('db_coinmarket')->name("coinmarket")->field("id,symbol,max(last_updated),price_usd,volume")->group("symbol")->order("volume desc")->select();
         $this->assign("coinmarket",$coinmarket);
         return $this->fetch(':index');
     }
