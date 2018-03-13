@@ -5,6 +5,34 @@
     <title>Title</title>
 </head>
 <body>
+<table class="table table-hover table-bordered table-list">
+    <thead>
+    <tr>
+        <th width="15">
+            <label>
+                <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+            </label>
+        </th>
+        <th width="50">ID</th>
+        <th width="50">名称</th>
+
+        <th width="50">价格</th>
+        <th>24小时交易量</th>
+    </tr>
+    </thead>
+    <foreach name="coinmarket" item="vo">
+        <tr>
+            <td>
+                <input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                       value="{$vo.id}" title="ID:{$vo.id}">
+            </td>
+            <td><b>{$vo.id}</b></td>
+            <td>{$vo.symbol}</td>
+            <td>{$vo.price_usd</td>
+            <td>{$vo.volume}</td>
+        </tr>
+    </foreach>
+</table>
 
 </body>
 </html>
