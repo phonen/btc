@@ -17,6 +17,7 @@
 
         <th width="50">价格($)</th><th width="50">价格(￥)</th>
         <th>24小时交易量($)</th>
+        <th>24小时交易量（BTC）</th>
     </tr>
     </thead>
     <foreach name="coinmarket" item="vo">
@@ -26,6 +27,7 @@
             <td>{$vo.price_usd}</td>
             <td>{$vo.price_usd * 6.7}</td>
             <td>{$vo.volume}</td>
+            <td>{$vo.volume / $price}</td>
         </tr>
     </foreach>
 </table>

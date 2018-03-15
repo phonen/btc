@@ -18,6 +18,14 @@ class IndexController extends HomeBaseController
     public function index()
     {
         $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_last")->field("symbol,price_usd,volume")->order("volume desc")->select();
+        foreach ($coinmarket as $coin){
+            if($coin['symbol'] == 'BTC') {
+                $price = $coin['price_usd'];
+                break;
+            }
+        }
+        $this->assign("price",$price);
+
         $this->assign("coinmarket",$coinmarket);
         return $this->fetch(':index');
     }
