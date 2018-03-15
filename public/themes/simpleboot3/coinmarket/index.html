@@ -25,9 +25,9 @@
 
             <td>{$vo.symbol}</td>
             <td>{$vo.price_usd}</td>
-            <td>{$vo.price_usd * 6.7}</td>
+            <td>{$vo.price_usd * 6.7 | round=2}</td>
             <td>{$vo.volume}</td>
-            <td>{$vo.volume / $price}</td>
+            <td>{$vo.volume / $price|round=2}</td>
         </tr>
     </foreach>
 </table>
