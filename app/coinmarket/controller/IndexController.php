@@ -17,7 +17,7 @@ class IndexController extends HomeBaseController
 {
     public function index()
     {
-        $coinmarket = Db::connect('db_coinmarket')->name("coinmarket")->field("id,symbol,max(last_updated),price_usd,volume")->group("symbol")->order("volume desc")->select();
+        $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_last")->field("symbol,price_usd,volume")->order("volume desc")->select();
         $this->assign("coinmarket",$coinmarket);
         return $this->fetch(':index');
     }
