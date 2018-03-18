@@ -29,4 +29,21 @@ class IndexController extends HomeBaseController
         $this->assign("coinmarket",$coinmarket);
         return $this->fetch(':index');
     }
+
+    public function h12()
+    {
+        $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_last")->field("symbol,price_usd,volume")->order("volume desc")->select();
+        foreach ($coinmarket as $coin){
+            if($coin['symbol'] == 'BTC') {
+                $price = $coin['price_usd'];
+                break;
+            }
+        }
+        $this->assign("price",$price);
+
+        $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_12h")->field("symbol,price,volume")->order("volume desc")->select();
+
+        $this->assign("coinmarket",$coinmarket);
+        return $this->fetch(':h12');
+    }
 }
