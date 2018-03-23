@@ -27,6 +27,7 @@ class IndexController extends HomeBaseController
         $this->assign("price",$price);
 
         $this->assign("coinmarket",$coinmarket);
+
         return $this->fetch(':index');
     }
 

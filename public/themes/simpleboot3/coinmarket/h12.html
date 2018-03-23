@@ -6,6 +6,9 @@
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>交易量变化</title>
+    <style type="text/css">
+        td.ex {color:red}
+    </style>
 </head>
 <body>
 <table class="table table-hover table-bordered table-list">
@@ -24,7 +27,7 @@
         <tr>
 
             <td>{$vo.symbol}</td>
-            <td>{$vo.price}</td>
+            <td {lt name="vo.price" value="0"} class="ex" {/lt} >{$vo.price}</td>
             <td>{$vo.price * 6.4 | round=2}</td>
             <td>{$vo.volume}</td>
             <td>{$vo.volume / $price|round=2}</td>
