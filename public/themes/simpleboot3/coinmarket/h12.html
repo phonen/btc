@@ -18,9 +18,9 @@
 
         <th width="30">名称</th>
 
-        <th width="50">价格变化($)</th><th width="50">价格变化(￥)</th>
-        <th>交易量变化12h($)</th>
-        <th>交易量变化12h（BTC）</th>
+        <th width="50">价格变化($)</th><th width="50">价格变化比例</th>
+        <th>交易量变化12h</th>
+        <th>交易量变化48h</th>
     </tr>
     </thead>
     <foreach name="coinmarket" item="vo">
@@ -28,9 +28,9 @@
 
             <td>{$vo.symbol}</td>
             <td <lt name="vo.price" value="0">class="ex"</lt> >{$vo.price}</td>
-            <td>{$vo.price * 6.4 | round=2}</td>
+            <td>{$vo.price/$price[$vo.symbol]*100 | round=2}%</td>
             <td>{$vo.volume}</td>
-            <td>{$vo.volume / $price|round=2}</td>
+            <td>{$vo.volume / $price['BTC']|round=2}</td>
         </tr>
     </foreach>
 </table>
