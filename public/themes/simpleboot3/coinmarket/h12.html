@@ -29,8 +29,8 @@
             <td>{$vo.symbol}</td>
             <td <lt name="vo.price" value="0">class="ex"</lt> >{$vo.price}</td>
             <td>{$vo.price/$price[$vo.symbol]*100 | round=2}%</td>
-            <td>{$vo.volume}</td>
-            <td>{$vo.volume / $price['BTC']|round=2}</td>
+            <td>{$vo.volume12 / $price['BTC'] | round=2}</td>
+            <td>{$vo.volume48 / $price['BTC']|round=2}</td>
         </tr>
     </foreach>
 </table>
