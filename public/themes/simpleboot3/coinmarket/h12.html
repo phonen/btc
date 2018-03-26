@@ -18,7 +18,7 @@
 
         <th width="30">名称</th>
 
-        <th width="50">12h价格变化($)</th><th width="50">12h价格变化比例</th>
+        <th width="50">价格变化12h($)</th><th width="50">价格变化比例12h</th>
         <th>交易量变化12h</th>
         <th>交易量变化48h</th>
     </tr>
@@ -27,10 +27,10 @@
         <tr>
 
             <td>{$vo.symbol}</td>
-            <td <lt name="vo.price12" value="0">class="ex"</lt> >{$vo.price12}</td>
+            <td <lt name="vo.price12" value="0">class="ex"</lt> >{$vo.price12 | round=4}</td>
             <td><eq name="price[$vo.symbol]" value = "0">0<else/>{$vo.price12/$price[$vo.symbol]*100 | round=2}%</eq></td>
-            <td>{$vo.volume12 / $price['BTC'] | round=2}</td>
-            <td>{$vo.volume48 / $price['BTC']|round=2}</td>
+            <td <lt name="vo.volume12" value="0">class="ex"</lt>>{$vo.volume12 / $price['BTC'] | round=2}</td>
+            <td <lt name="vo.volume48" value="0">class="ex"</lt>>{$vo.volume48 / $price['BTC']|round=2}</td>
         </tr>
     </foreach>
 </table>
