@@ -29,7 +29,7 @@
     </thead>
     <foreach name="coinmarket" item="vo">
         <tr>
-            <td></td>
+            <td data-field="index" data-formatter="indexFormatter"></td>
             <td>{$vo.symbol}</td>
             <td <lt name="vo.price12" value="0">class="ex"</lt> >{$vo.price12 | round=4}</td>
             <td><eq name="price[$vo.symbol]" value = "0">0<else/>{$vo.price12/$price[$vo.symbol]*100 | round=2}%</eq></td>
