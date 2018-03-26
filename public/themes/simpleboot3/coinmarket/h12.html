@@ -9,12 +9,17 @@
     <style type="text/css">
         td.ex {color:red}
     </style>
+    <script type="text/javascript">
+        function indexFormatter(value, row, index) {
+            return index+1;
+        }
+    </script>
 </head>
 <body>
 <table class="table table-hover table-bordered table-list">
     <thead>
     <tr>
-        <th width="30">编号</th>
+        <th width="30" data-field="index" data-formatter="indexFormatter" >序号</th>
         <th width="30">名称</th>
 
         <th width="50">价格变化12h($)</th><th width="50">价格变化比例12h</th>
