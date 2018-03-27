@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <include file="public@head"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>交易量变化</title>
     <style type="text/css">
         td.ex {color:red}
@@ -16,11 +19,6 @@
 <table class="table table-hover table-bordered table-list">
     <thead>
     <tr>
-        <th width="15">
-            <label>
-                <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
-            </label>
-        </th>
         <th width="30" data-field="index" data-formatter="indexFormatter" >序号</th>
         <th width="30">名称</th>
 
@@ -31,10 +29,6 @@
     </thead>
     <foreach name="coinmarket" item="vo">
         <tr>
-            <td>
-                <input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
-                       value="{$vo.symbol}" title="ID:{$vo.symbol}">
-            </td>
             <td data-field="index" data-formatter="indexFormatter"></td>
             <td>{$vo.symbol}</td>
             <td <lt name="vo.price12" value="0">class="ex"</lt> >{$vo.price12 | round=4}</td>
