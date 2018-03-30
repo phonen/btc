@@ -41,7 +41,7 @@ class IndexController extends HomeBaseController
             $price[$coin['id']] = $coin['price'];
             if($coin['price'] != 0)
             $coin['price12p'] = round($coin['price12'] /$coin['price']*100,2) . "%";
-            $coin['volume12'] = round($coin['volume12']/$data['price'],2);
+            $coin['volume12'] = round($coin['volume12']/$data['bitcoin'],2);
             $coin['volume48'] = round($coin['volume48']/$data['bitcoin'],2);
 
             array_push($coins,$coin);
