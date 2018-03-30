@@ -19,8 +19,8 @@
 <table class="table table-hover table-bordered table-list">
     <thead>
     <tr>
-
-        <th width="15">名称</th>
+        <th width="30">名称</th>
+        <th width="15">币</th>
 
         <th width="50">价格变化12h($)</th><th width="50">价格变化比例12h</th>
         <th>交易量变化12h</th>
@@ -29,7 +29,7 @@
     </thead>
     <foreach name="coinmarket" item="vo">
         <tr>
-
+            <td>{$vo.id}</td>
             <td>{$vo.symbol}</td>
             <td <lt name="vo.price12" value="0">class="ex"</lt> >{$vo.price12 | round=4}</td>
             <td><eq name="price[$vo.symbol]" value = "0">0<else/>{$vo.price12/$price[$vo.symbol]*100 | round=2}%</eq></td>

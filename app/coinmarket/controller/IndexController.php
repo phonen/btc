@@ -36,7 +36,7 @@ class IndexController extends HomeBaseController
         $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48")->order("volume12 desc")->select();
 
         foreach($coinmarket as $coin){
-            $price[$coin['symbol']] = $coin['price'];
+            $price[$coin['id']] = $coin['price'];
         }
         $this->assign("price",$price);
         $this->assign("coinmarket",$coinmarket);
