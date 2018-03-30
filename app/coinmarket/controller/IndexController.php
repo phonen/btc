@@ -57,7 +57,7 @@ class IndexController extends HomeBaseController
     }
     public function h12()
     {
-        $param           = $this->request->param();
+        $param = $this->request->param();
         if(isset($param['sort']) && isset($param['order'])){
             $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48")->order("volume12 desc")->select();
             foreach ($coinmarket as $coin){
