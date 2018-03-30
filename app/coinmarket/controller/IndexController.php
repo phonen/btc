@@ -31,6 +31,25 @@ class IndexController extends HomeBaseController
         return $this->fetch(':index');
     }
 
+    public function h48()
+    {
+        $data = Db::connect('db_coinmarket')->name("coinmarket_last")->field("price")->where("id=bitcoin")->find();
+        $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48")->order("volume12 desc")->select();
+
+        $coins = array();
+        foreach($coinmarket as $coin){
+            $price[$coin['id']] = $coin['price'];
+            if($coin['price'] != 0)
+            $coin['price12p'] = round($coin['price12'] /$coin['price']*100,2) . "%";
+            $coin['volume12'] = round($coin['volume12']/$data['price'],2);
+            $coin['volume48'] = round($coin['volume48']/$data['bitcoin'],2);
+
+            array_push($coins,$coin);
+        }
+        echo json_encode($coins);
+
+
+    }
     public function h12()
     {
         $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48")->order("volume12 desc")->select();
