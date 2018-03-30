@@ -79,7 +79,8 @@ class IndexController extends HomeBaseController
 
                 array_push($coins,$coin);
             }
-            echo json_encode($coins);
+            
+            echo json_encode(array("total"=>count($coins),rows=>$coins));
         }
         else return $this->fetch(':h12');
     }
