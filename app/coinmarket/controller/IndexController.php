@@ -43,7 +43,7 @@ class IndexController extends HomeBaseController
         }
         $coins = array();
         foreach($coinmarket as $coin){
-            $price[$coin['id']] = $coin['price'];
+            $coin['price12'] = round($coin['price12'],4);
             if($coin['price'] != 0)
             $coin['price12p'] = round($coin['price12'] /$coin['price']*100,2) . "%";
             $coin['volume12'] = round($coin['volume12']/$bitcoin,2);
