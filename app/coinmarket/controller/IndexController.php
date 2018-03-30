@@ -34,6 +34,7 @@ class IndexController extends HomeBaseController
     public function h48()
     {
         $data = Db::connect('db_coinmarket')->name("coinmarket_last")->field("price_usd as price")->where("coinid='bitcoin'")->find();
+        print($data);
         $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48")->order("volume12 desc")->select();
 
         $coins = array();
@@ -41,8 +42,8 @@ class IndexController extends HomeBaseController
             $price[$coin['id']] = $coin['price'];
             if($coin['price'] != 0)
             $coin['price12p'] = round($coin['price12'] /$coin['price']*100,2) . "%";
-            $coin['volume12'] = round($coin['volume12']/$data['bitcoin'],2);
-            $coin['volume48'] = round($coin['volume48']/$data['bitcoin'],2);
+            $coin['volume12'] = round($coin['volume12']/$data,2);
+            $coin['volume48'] = round($coin['volume48']/$data,2);
 
             array_push($coins,$coin);
         }
