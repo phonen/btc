@@ -32,9 +32,9 @@
             <td>{$vo.id}</td>
             <td>{$vo.symbol}</td>
             <td <lt name="vo.price12" value="0">class="ex"</lt> >{$vo.price12 | round=4}</td>
-            <td><eq name="price[$vo.symbol]" value = "0">0<else/>{$vo.price12/$price[$vo.symbol]*100 | round=2}%</eq></td>
-            <td <lt name="vo.volume12" value="0">class="ex"</lt>>{$vo.volume12 / $price['BTC'] | round=2}</td>
-            <td <lt name="vo.volume48" value="0">class="ex"</lt>>{$vo.volume48 / $price['BTC']|round=2}</td>
+            <td><eq name="price[$vo.id]" value = "0">0<else/>{$vo.price12/$price[$vo.id]*100 | round=2}%</eq></td>
+            <td <lt name="vo.volume12" value="0">class="ex"</lt>>{$vo.volume12 / $price['bitcoin'] | round=2}</td>
+            <td <lt name="vo.volume48" value="0">class="ex"</lt>>{$vo.volume48 / $price['bitcoin']|round=2}</td>
         </tr>
     </foreach>
 </table>
