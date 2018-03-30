@@ -33,7 +33,7 @@ class IndexController extends HomeBaseController
 
     public function h48()
     {
-        $data = Db::connect('db_coinmarket')->name("coinmarket_last")->field("price")->where("id=bitcoin")->find();
+        $data = Db::connect('db_coinmarket')->name("coinmarket_last")->field("price_usd as price")->where("id=bitcoin")->find();
         $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48")->order("volume12 desc")->select();
 
         $coins = array();
