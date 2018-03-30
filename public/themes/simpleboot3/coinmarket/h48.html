@@ -35,8 +35,6 @@
            data-show-refresh="true"
            data-show-toggle="true"
            data-show-columns="true"
-           data-detail-view="true"
-           data-detail-formatter="detailFormatter"
            data-minimum-count-columns="2"
            data-show-pagination-switch="true"
            data-pagination="true"
@@ -69,8 +67,7 @@
                     field: 'id',
                     align: 'center',
                     valign: 'middle',
-                    sortable: true,
-                    footerFormatter: totalTextFormatter
+                    sortable: true
                 }, {
                     title: '币',
                     field: 'symbol',
@@ -86,7 +83,7 @@
                     field: 'price12',
                     title: '价格变化',
                     sortable: true,
-                    align: 'center',
+                    align: 'center'
                 }, {
                     field: 'price12p',
                     title: '价格变化比例',
