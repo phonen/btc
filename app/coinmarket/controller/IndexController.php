@@ -35,7 +35,7 @@ class IndexController extends HomeBaseController
     {
 
         $param = $this->request->param();
-        if(isset($param['sort']) && isset($param['order'])){
+        if(isset($param['order'])){
             $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48")->order("volume12 desc")->select();
             foreach ($coinmarket as $coin){
                 if($coin['id'] == "bitcoin") {
@@ -53,7 +53,7 @@ class IndexController extends HomeBaseController
 
                 array_push($coins,$coin);
             }
-            echo json_encode($coins);
+            echo json_encode(array("total"=>count($coins),"rows"=>$coins));
         }
         else return $this->fetch(':h48');
 
@@ -80,7 +80,7 @@ class IndexController extends HomeBaseController
                 array_push($coins,$coin);
             }
 
-            echo json_encode(array("total"=>count($coins),"rows"=>$coins));
+            echo json_encode($coins);
         }
         else return $this->fetch(':h12');
     }
