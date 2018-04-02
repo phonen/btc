@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>交易量变化</title>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>Boostrap v4.0</h1>
+    <h1>交易变化</h1>
     <div id="toolbar">
         <button id="remove" class="btn btn-danger" disabled>
             <i class="glyphicon glyphicon-remove"></i> Delete
@@ -161,7 +161,12 @@
 
         return '<span  style="color: ' + color + '">' + value + '</span>';
     }
-
+    function responseHandler(res) {
+        $.each(res.rows, function (i, row) {
+            row.state = $.inArray(row.id, selections) !== -1;
+        });
+        return res;
+    }
     $(function () {
         initTable();
     });
