@@ -38,8 +38,12 @@
            data-show-toggle="true"
            data-show-columns="true"
            data-minimum-count-columns="2"
+           data-show-pagination-switch="true"
+           data-pagination="true"
            data-id-field="id"
+           data-page-list="[10, 25, 50, 100, ALL]"
            data-show-footer="false"
+           data-side-pagination="server"
            data-url="/coinmarket/Index/h48"
            data-response-handler="responseHandler">
     </table>
@@ -74,7 +78,8 @@
                     field: 'price12',
                     title: '价格变化',
                     sortable: true,
-                    align: 'center'
+                    align: 'center',
+                    formatter: priceFormatter
                 }, {
                     field: 'price12p',
                     title: '价格变化比例',
