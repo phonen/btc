@@ -55,63 +55,78 @@
         $table.bootstrapTable({
             height: getHeight(),
             columns: [
+                [
                 {
                     field: 'state',
                     checkbox: true,
+                    rowspan: 2,
                     align: 'center',
                     valign: 'middle'
                 },{
                     title: '名称',
                     field: 'id',
+                    rowspan: 2,
                     align: 'center',
                     valign: 'middle',
                     sortable: true
                 }, {
                     title: '币',
                     field: 'symbol',
+                    rowspan: 2,
                     align: 'center',
                     valign: 'middle',
                     sortable: true
                 },{
+                    title:'价格',
+                    colspan:4,
+                    align:'center'
+                },{
+                    title:'交易量',
+                    colspan:3,
+                    align:'center'
+                }
+                ],
+                [
+                    {
                     field: 'price',
                     title: '价格',
                     sortable: true,
                     align: 'center'
                 }, {
                     field: 'price12',
-                    title: '价格变化',
+                    title: '12h变化',
                     sortable: true,
                     align: 'center',
                     formatter: priceFormatter
                 }, {
                     field: 'price12p',
-                    title: '12价格变化比例',
+                    title: '12h比例',
                     sortable: true,
                     align: 'center'
                 },{
                     field: 'price24p',
-                    title: '24价格变化比例',
+                    title: '24h比例',
                     sortable: true,
                     align: 'center'
                 },{
                     field: 'volume12',
-                    title: '12交易量变化',
+                    title: '12h变化',
                     sortable: true,
                     align: 'center'
                 },{
                     field: 'volume24',
-                    title: '24交易量变化',
+                    title: '24h变化',
                     sortable: true,
                     align: 'center',
                     formatter: priceFormatter
                 }, {
                     field: 'volume48',
-                    title: '交易量变化48h',
+                    title: '48h变化',
                     sortable: true,
                     align: 'center',
                     formatter: priceFormatter
                 }
-
+                ]
             ]
         });
         // sometimes footer render error.
