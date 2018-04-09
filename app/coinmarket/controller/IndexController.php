@@ -64,7 +64,7 @@ class IndexController extends HomeBaseController
     }
     public function h12()
     {
-        header("location:/coinmarket/Index/h48");
+        header("location:https://btc.exeou.com/coinmarket/Index/h48");
         exit();
         $param = $this->request->param();
         if(isset($param['order'])){
