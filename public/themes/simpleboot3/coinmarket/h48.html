@@ -28,7 +28,7 @@
     <h1>交易变化</h1>
     <div id="toolbar">
         <button id="remove" class="btn btn-danger" disabled>
-            <i class="glyphicon glyphicon-remove"></i> Delete
+            <i class="glyphicon glyphicon-remove"></i> 删除
         </button>
     </div>
     <table id="table"
@@ -56,6 +56,11 @@
             height: getHeight(),
             columns: [
                 {
+                    field: 'state',
+                    checkbox: true,
+                    align: 'center',
+                    valign: 'middle'
+                },{
                     title: '名称',
                     field: 'id',
                     align: 'center',
