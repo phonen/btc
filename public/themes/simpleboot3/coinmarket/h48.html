@@ -85,14 +85,25 @@
                     formatter: priceFormatter
                 }, {
                     field: 'price12p',
-                    title: '价格变化比例',
+                    title: '12价格变化比例',
+                    sortable: true,
+                    align: 'center'
+                },{
+                    field: 'price24p',
+                    title: '24价格变化比例',
                     sortable: true,
                     align: 'center'
                 },{
                     field: 'volume12',
-                    title: '交易量变化12h',
+                    title: '12交易量变化',
                     sortable: true,
                     align: 'center'
+                },{
+                    field: 'volume24',
+                    title: '24交易量变化',
+                    sortable: true,
+                    align: 'center',
+                    formatter: priceFormatter
                 }, {
                     field: 'volume48',
                     title: '交易量变化48h',
