@@ -35,13 +35,24 @@ class IndexController extends HomeBaseController
     {
 
         $param = $this->request->param();
-        if(isset($param['order'])){
-            $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48,price-price24 as price24,volume-volume24 as volume24")->order("volume12 desc")->select();
+        if(isset($param)){
+            $order = isset($param['order'])?$param['order']:'desc';
+            $sort = isset($param['sort'])?$param['sort']:'volume12';
+            $offset = isset($param['offset'])?$param['offset']:0;
+            $limit = isset($param['limit'])?$param['limit']:10;
+            $total = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48,price-price24 as price24,volume-volume24 as volume24")->count();
+            $prices = Db::connect('db_coinmarket')->name("coinmarket_last")->field("price_usd as price")->where("coinid='bitcoin'")->find();
+            $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48,price-price24 as price24,volume-volume24 as volume24")->order($sort . " " . $order)->limit($offset,$limit)->select();
+            /*
             foreach ($coinmarket as $coin){
                 if($coin['id'] == "bitcoin") {
                     $bitcoin = $coin['price'];
                     break;
                 }
+            }
+            */
+            if($prices){
+                $bitcoin = $prices['price'];
             }
             $coins = array();
             foreach($coinmarket as $coin){
@@ -57,7 +68,7 @@ class IndexController extends HomeBaseController
 
                 array_push($coins,$coin);
             }
-            echo json_encode(array("total"=>count($coins),"rows"=>$coins));
+            echo json_encode(array("total"=>$total,"rows"=>$coins));
         }
         else return $this->fetch(':h48');
 
