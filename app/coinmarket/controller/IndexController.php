@@ -36,7 +36,9 @@ class IndexController extends HomeBaseController
 
         $param = $this->request->param();
         if(isset($param['order'])){
+            if(isset($param['sort']))
             $order = isset($param['order'])?$param['order']:'desc';
+            else $order = 'desc';
             $sort = isset($param['sort'])?$param['sort']:'volume12';
             $offset = isset($param['offset'])?$param['offset']:0;
             $limit = isset($param['limit'])?$param['limit']:10;
