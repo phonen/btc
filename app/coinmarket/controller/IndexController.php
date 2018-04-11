@@ -42,7 +42,7 @@ class IndexController extends HomeBaseController
             $sort = isset($param['sort'])?$param['sort']:'volume12';
             $offset = isset($param['offset'])?$param['offset']:0;
             $limit = isset($param['limit'])?$param['limit']:10;
-            $total = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48,price-price24 as price24,volume-volume24 as volume24")->count();
+            $total = Db::connect('db_coinmarket')->name("coinmarket_48h")->count();
             $prices = Db::connect('db_coinmarket')->name("coinmarket_last")->field("price_usd as price")->where("coinid='bitcoin'")->find();
             $coinmarket = Db::connect('db_coinmarket')->name("coinmarket_48h")->field("id,symbol , price,volume,price-price12 as price12,volume-volume12 as volume12,price-price48 as price48,volume-volume48 as volume48,price-price24 as price24,volume-volume24 as volume24")->order($sort . " " . $order)->limit($offset,$limit)->select();
             /*
@@ -64,6 +64,7 @@ class IndexController extends HomeBaseController
                     $coin['price24p'] = round($coin['price24'] /$coin['price']*100,2) . "%";
                 }
 
+                $coin['volume'] = round($coin['volume']/$bitcoin,2);
                 $coin['volume12'] = round($coin['volume12']/$bitcoin,2);
                 $coin['volume24'] = round($coin['volume24']/$bitcoin,2);
                 $coin['volume48'] = round($coin['volume48']/$bitcoin,2);
